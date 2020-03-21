@@ -31,3 +31,5 @@ Learning how to use an API(Telegram API) and practicing Python coding.
 We would like to show more data around the development of the virus.
 
 ## Link: [telegram.me/hackfromhomebot](https://telegram.me/hackfromhomebot)
+
+## This project was developed by Alex Alemany and Pau Rosselló
