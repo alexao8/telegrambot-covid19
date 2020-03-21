@@ -71,4 +71,5 @@ def handle_messages(messages):
             bot.send_message(message.chat.id, "Sobre que país desea obtener información: ", reply_markup=markup)
 
 bot.set_update_listener(handle_messages)
+
 bot.polling()
