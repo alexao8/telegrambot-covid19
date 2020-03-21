@@ -1,4 +1,4 @@
-import telebot,os,datetime,csv,os.path
+import telebot,os,datetime,csv,os.path,requests
 from telebot import types
 bot = telebot.TeleBot("1088035769:AAG8T5UdZPtY_FBPIIAxc5ymCDHy2Ogk_YQ")
 
@@ -10,8 +10,12 @@ def extract_data(country):
     year = "20" + dia_actual.strftime("%y")
     web_link = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/"
     csv_archive = month + '-' + day + '-' + year +".csv"
-    if  not os.path.exists(csv_archive):
-        os.system("wget " + web_link + month + '-' + day + '-' + year +".csv")
+    request = requests.get(web_link + csv_archive)
+    if request.status_code == 200:
+        if  not os.path.exists(csv_archive):
+            os.system("wget " + web_link + month + '-' + day + '-' + year +".csv")
+    else:
+         csv_archive = month + '-' + str(int(day)-1) + '-' + year +".csv"
     with open(csv_archive,'r') as file:
         reader = csv.reader(file)
         dades = [0,0,0]
@@ -71,5 +75,4 @@ def handle_messages(messages):
             bot.send_message(message.chat.id, "Sobre que país desea obtener información: ", reply_markup=markup)
 
 bot.set_update_listener(handle_messages)
-
 bot.polling()
