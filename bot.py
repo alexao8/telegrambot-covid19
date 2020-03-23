@@ -1,7 +1,6 @@
 import telebot,os,datetime,csv,os.path,requests
 from telebot import types
-bot = telebot.TeleBot("1088035769:AAG8T5UdZPtY_FBPIIAxc5ymCDHy2Ogk_YQ")
-
+bot = telebot.TeleBot("token")
 
 def extract_data(country):
     dia_actual = datetime.datetime.now();
